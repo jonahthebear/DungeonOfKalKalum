@@ -1,3 +1,9 @@
+import ObjectClasses
+
 class Room:
-    def __init__(self, name):
+    pass
+
+class Door(ObjectClasses.Object):
+    def __init__(self, name, position: ObjectClasses.Position):
         self.name = name
+        self.position = position
