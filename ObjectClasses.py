@@ -5,13 +5,12 @@ class Position:
         self.z = z
 
 class Object:
-    def __init__(self, name, position: Position, size):
+    def __init__(self, name, position: Position, ):
         self.name = name
         self.position = position
-        size_name = ['miniscule', 'tiny', 'small', 'medium', 'kind of big','large', 'gigantic']
-        self.size = size
 
-        #objects should have descriptions but those should be read from a file, not coded into the actual program
+    def Behaviour(self):
+        pass
 
 class Damageable:
     def __init__(self, hit_points):
@@ -21,12 +20,6 @@ class Damageable:
         self.hit_points -= damage
 
 class DamageableObject(Object, Damageable):
-    def __init__(self, name, position: Position, size, hit_points):
-        Object.__init__(self, name, position, size)
+    def __init__(self, name, position: Position, hit_points):
+        Object.__init__(self, name, position)
         Damageable.__init__(self, hit_points)
-
-class Creature(DamageableObject):
-    def __init__(self, name, position: Position, size, hit_points):
-        super().__init__(name, position, size, hit_points)
-
-    #A behaviour class reference can go here so that creatures can be created with certain behaviours or something
