@@ -1,5 +1,6 @@
 import ObjectClasses
 from InventoryClasses import Inventory
+import PlayerActions
 
 class Creature(ObjectClasses.DamageableObject):
     def __init__(self, name, position: ObjectClasses.Position, hit_points, inventory_size, isPlayer : bool):
@@ -9,11 +10,15 @@ class Creature(ObjectClasses.DamageableObject):
         self.Inventory = Inventory(inventory_size)
 
     def Player_action(self):
-        player_action = input("What would you like to do?")
+        player_action = input("What would you like to do?").lower()
+        wordList = player_action.split()
 
         #inventory
+        if PlayerActions.PlayerQuery(wordList, PlayerActions.InventoryVerbs, PlayerActions.InventoryNames):
+            PlayerActions.CheckInventory(self.Inventory)
 
-        #use
+        #uses
+
 
         #attack
 
