@@ -13,11 +13,9 @@ class Item(ObjectClasses.DamageableObject):
         self.names = []
         actions = {}
 
-    def Action(self):
-        pass
-
     def PickUp(self, inventory):
         inventory.add(self)
+
 
 
 class PotionBottle(Item):
@@ -26,3 +24,10 @@ class PotionBottle(Item):
         Item.__init__(self, name, position, hit_points, uses)
 
         self.uses = uses
+
+    def drink(self, target):
+        return
+
+    actions = {
+        "drink": drink
+    }

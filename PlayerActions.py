@@ -1,4 +1,4 @@
-conjunctions = ['the', 'in', 'on', 'with', 'for']
+conjunctions = ['the', 'in', 'on', 'with', 'for', 'a']
 
 def PlayerQuery(player_input, items_list):
 
