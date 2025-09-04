@@ -7,8 +7,9 @@ Objects : list[ObjectClasses.Object] = []
 def Initializing():
 
     player = CreatureClasses.Creature("player", ObjectClasses.Position(0,0,0), 100, 10, True)
-    # testItem = ItemClasses.Item("testItem", ObjectClasses.Position(0, 0, 0), 100, "item")
+    testItem = ItemClasses.Item("testItem", ObjectClasses.Position(0, 0, 0), 100, "item")
     Objects.append(player)
+    player.Abilities[0].add(testItem)
 
 Initializing()
 

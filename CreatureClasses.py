@@ -1,26 +1,29 @@
 import ObjectClasses
+from ItemClasses import Ability
 from InventoryClasses import Inventory
+
 import PlayerActions
 
 class Creature(ObjectClasses.DamageableObject):
-    def __init__(self, name, position: ObjectClasses.Position, hit_points, inventory_size, isPlayer : bool):
+    def __init__(self, name, position: ObjectClasses.Position, hit_points, inventory_size, is_player : bool):
         super().__init__(name, position, hit_points)
 
-        self.isPlayer : bool = isPlayer
-        self.Inventory = Inventory(inventory_size)
+        self.isPlayer : bool = is_player
+        self.Abilities = []
+        self.Abilities.append(Inventory(inventory_size))
 
     def Player_action(self):
+
         player_action = input("What would you like to do?").lower()
-        wordList = player_action.split()
+        word_list = player_action.split()
 
-        #inventory
-        if PlayerActions.PlayerQuery(wordList, PlayerActions.InventoryVerbs, PlayerActions.InventoryNames):
-            PlayerActions.CheckInventory(self.Inventory)
+        #remove useless words
+        for conjunction in PlayerActions.conjunctions:
+            for word in word_list:
+                if word in conjunction:
+                    word_list.remove(word)
 
-        #uses
-
-
-        #attack
+        PlayerActions.PlayerQuery(word_list, self.Abilities)
 
     def Creature_action(self):
         pass # creature logic will go here

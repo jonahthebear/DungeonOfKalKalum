@@ -1,21 +1,13 @@
-def PlayerQuery(player_input, verb_list, noun_list):
+conjunctions = ['the', 'in', 'on', 'with', 'for']
 
-    query = False
+def PlayerQuery(player_input, items_list):
 
-    for verb in verb_list:
-        if verb in player_input:
-            query = True
-            break
+    for item in items_list:
 
-    if query:
-        for noun in noun_list:
-            if noun in player_input:
-                query = True
+        for name in item.names:
+            if name in player_input:
+                for action in item.actions:
+                    if action in player_input:
+                        item.actions[action](item)
 
-    return query
-
-InventoryNames = {'inventory', 'bag', 'backpack'}
-InventoryVerbs = ('open', 'check')
-
-def CheckInventory(inventory):
-    return inventory.GetItemNames()
+    return
