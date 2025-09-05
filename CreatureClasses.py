@@ -12,24 +12,28 @@ class Creature(ObjectClasses.DamageableObject):
         self.Abilities = []
         self.Abilities.append(Inventory(inventory_size))
 
-    def Player_action(self):
+    def player_action(self):
 
         player_action = input("What would you like to do?").lower()
         word_list = player_action.split()
 
         #remove useless words
-        for conjunction in PlayerActions.conjunctions:
-            for word in word_list:
-                if word in conjunction:
-                    word_list.remove(word)
 
-        PlayerActions.PlayerQuery(word_list, game_state.rooms)
+        target = ""
 
-        PlayerActions.PlayerQuery(word_list, self.Abilities)
+        #room player actions
+        PlayerActions.player_query(word_list, game_state.rooms, target)
 
-    def Creature_action(self):
+        #player ability actions
+        PlayerActions.player_query(word_list, self.Abilities, target)
+
+        #player item actions
+
+        #player meta actions
+
+    def creature_action(self):
         pass # creature logic will go here
 
-    def Behaviour(self):
+    def behaviour(self):
         if self.is_player:
-            self.Player_action()
+            self.player_action()
