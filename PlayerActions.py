@@ -1,22 +1,19 @@
-conjunctions = ['the', 'in', 'on', 'with', 'for', 'a']
+import inspect
 
+def player_query(player_input, items_list, target):
 
-def filter_list(input, list) -> bool:
+    if "my" in player_input:
 
-    for item in list:
-        if item in input:
-            return True
-
-    return False
-
-
-
-def PlayerQuery(player_input, items_list):
 
     for item in items_list:
-        if filter_list(player_input, item.names):
+
+        for name in item.names:
+            if name in player_input:
                 for action in item.actions:
                     if action in player_input:
-                        item.actions[action](item)
+                        if len(inspect.signature(item.actions[action]).parameters) == 1:
+                            item.actions[action](item)
+                        else:
+                            item.actions[action](item, target)
 
     return

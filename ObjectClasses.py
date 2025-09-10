@@ -9,7 +9,7 @@ class Object:
         self.name = name
         self.position = position
 
-    def Behaviour(self):
+    def behaviour(self):
         pass
 
 class Damageable:

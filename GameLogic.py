@@ -3,15 +3,15 @@ import game_state
 
 GameFile.initializing()
 
-def Tick():
+def tick():
 
     for obj in game_state.objects:
-        obj.Behaviour()
+        obj.behaviour()
     return
 
 while True:
     try:
-        Tick()
+        tick()
 
     except ValueError:
         print("Something went wrong")
