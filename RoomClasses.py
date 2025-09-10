@@ -1,5 +1,8 @@
 import CreatureClasses
+import GameFile
 import ObjectClasses
+import game_state
+
 
 class Room:
     def __init__(self, name, position):
@@ -26,5 +29,15 @@ class Room:
 
 
 class Door(ObjectClasses.Object):
-    def __init__(self, name, position: ObjectClasses.Position):
+    def __init__(self, name, position: ObjectClasses.Position, room_index):
         super().__init__(name, position)
+        self.names = ['door', 'portal']
+        self.room_index = room_index
+
+    def open_door(self):
+        print("you open door")
+        game_state.current_room = game_state.rooms[self.room_index]
+
+    actions = {
+        "open" : open_door,
+    }

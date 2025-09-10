@@ -1,11 +1,20 @@
 conjunctions = ['the', 'in', 'on', 'with', 'for', 'a']
 
+
+def filter_list(input, list) -> bool:
+
+    for item in list:
+        if item in input:
+            return True
+
+    return False
+
+
+
 def PlayerQuery(player_input, items_list):
 
     for item in items_list:
-
-        for name in item.names:
-            if name in player_input:
+        if filter_list(player_input, item.names):
                 for action in item.actions:
                     if action in player_input:
                         item.actions[action](item)

@@ -15,5 +15,6 @@ while True:
 
     except ValueError:
         print("Something went wrong")
+
     else:
         continue

@@ -1,3 +1,4 @@
+import GameFile
 import ObjectClasses
 from InventoryClasses import Inventory
 import PlayerActions
@@ -7,10 +8,11 @@ import game_state
 class Creature(ObjectClasses.DamageableObject):
     def __init__(self, name, position: ObjectClasses.Position, hit_points, inventory_size, is_player : bool):
         super().__init__(name, position, hit_points)
-
+        self.names = []
         self.is_player : bool = is_player
         self.Abilities = []
-        self.Abilities.append(Inventory(inventory_size))
+        self.Inventory = Inventory(inventory_size)
+
 
     def Player_action(self):
 
@@ -23,9 +25,16 @@ class Creature(ObjectClasses.DamageableObject):
                 if word in conjunction:
                     word_list.remove(word)
 
-        PlayerActions.PlayerQuery(word_list, game_state.rooms)
+
+        for action in game_state.current_room.actions:
+            if action in word_list:
+                game_state.current_room.actions[action](game_state.current_room)
 
         PlayerActions.PlayerQuery(word_list, self.Abilities)
+
+        PlayerActions.PlayerQuery(word_list, self.Inventory.items)
+
+        PlayerActions.PlayerQuery(word_list, game_state.current_room.objects_list)
 
     def Creature_action(self):
         pass # creature logic will go here

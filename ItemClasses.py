@@ -3,6 +3,7 @@ import ObjectClasses
 class Ability:
     def __init__(self, name):
         self.name = name
+        self.names  = []
         self.actions = {}
 
 class Item(ObjectClasses.DamageableObject):
@@ -22,12 +23,17 @@ class PotionBottle(Item):
     def __init__(self, name, position: ObjectClasses.Position, hit_points, uses):
 
         Item.__init__(self, name, position, hit_points, uses)
-
+        self.names = ["potion"]
         self.uses = uses
 
     def drink(self, target):
         return
 
+    def throw(self):
+        print(" you throw the potion")
+        pass
+
     actions = {
-        "drink": drink
+        "drink": drink,
+        "throw": throw
     }
